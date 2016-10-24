@@ -60,11 +60,11 @@ The scripts are named as follows:</br>
 
 
 The script mktable.pl uses a number of parameter files that define the layout of the table in terms of which radial sites you want to monitor, which parameters you want to monitor and what the parameter limits are:</br>
-**Config_stations.txt**	lists the radial sites you wish to monitor.</br>
-**Config_parameters.txt**	lists the parameters you wish to monitor.</br>
-**Config_limits_XXXX.txt**	lists the parameter limits for a specific radial site.</br>
-**Site_XXXX.log**		the status log file from a specific radial site.</br>
-**table.html**		the output file containing the status table.</br>
+**Config_stations.txt**	lists the radial sites you wish to monitor,</br>
+**Config_parameters.txt**	lists the parameters you wish to monitor,</br>
+**Config_limits_XXXX.txt**	lists the parameter limits for a specific radial site,</br>
+**Site_XXXX.log**		the status log file from a specific radial site,</br>
+**table.html**		the output file containing the status table,</br>
 **tableimages.html**	an alternative output file containing a table of thumbnail images.</br>
 
 Normally you will need to adjust the contents of the Config_stations.txt file only.
@@ -77,10 +77,10 @@ The Config_stations.txt file has the following format:</br>
 `name=BMLR show=y rdlipath=Site_5 rdlmpath=Site_5_RDLm url=http://12.235.42.23:8240`</br>
 `name=PAFS show=y rdlipath=Site_6 rdlmpath=Site_6_RDLm url=http://166.130.35.187:8240`</br>
 
-Here **name** is used to locate the Site_XXXX.log file, name the site and locate the Config_limits_XXXX.txt file.</br>
-**show** is used to enable or disable the display of the site in the table.</br>
-**rdlipath** points to the subdirectory containing the ideal pattern radial files under /Codar/SeaSonde/RadialSites/.</br>
-**rdlmpath** points to the subdirectory containing the measured pattern radial files under /Codar/SeaSonde/RadialSites/.</br>
+Here **name** is used to locate the Site_XXXX.log file, name the site and locate the Config_limits_XXXX.txt file,</br>
+**show** is used to enable or disable the display of the site in the table,</br>
+**rdlipath** points to the subdirectory containing the ideal pattern radial files under /Codar/SeaSonde/RadialSites/,</br>
+**rdlmpath** points to the subdirectory containing the measured pattern radial files under /Codar/SeaSonde/RadialSites/,</br>
 **url** is the link at the radial site column header and normally points to the Radial WebServer URL and port.</br>
 
 
@@ -96,10 +96,10 @@ The Config_parameters.txt file has the following format:<br>
 `long_name=Xfer_Measured_Radial_Age_Seconds		short_name=	show=n	check=n	graph=n`<br>
 `long_name=Xfer_Measured_Radial_Age_Hours		short_name=XMRA	show=y	check=y	graph=y`<br>
 
-Here **long_name** is used to locate the parameter in the Site_XXXX.log file.</br>
-**short name** is used to create parameter specific files under data/.</br>
-**show** is a flag to enable or disable the entire row for all radial sites.</br>
-**check** is a flag to enable color coding the entire row for all radial sites, or color the row white.</br>
+Here **long_name** is used to locate the parameter in the Site_XXXX.log file,</br>
+**short name** is used to create parameter specific files under data/,</br>
+**show** is a flag to enable or disable the entire row for all radial sites,</br>
+**check** is a flag to enable color coding the entire row for all radial sites, or color the row white,</br>
 **graph** is a flag to enable or disable generating a plot.</br>
 
 
@@ -109,10 +109,10 @@ The Config_limits_XXXX.txt file has the following format:</br>
 `long_name=Root_Disk_Available_GB			low_red=10	low_orange=15`</br>
 `long_name=Archive_Disk_Available_GB			low_red=10	low_orange=15`</br>
 
-Here **long_name** is used to locate the parameter in the Site_XXXX.log file.</br>
-**low_red** defines the value below which the cell is colored red.</br>
-**low_orange** defines the value below which the cell is colored orange.</br>
-**high_orange** defines the value above which the cell is colored orange.</br>
+Here **long_name** is used to locate the parameter in the Site_XXXX.log file,</br>
+**low_red** defines the value below which the cell is colored red,</br>
+**low_orange** defines the value below which the cell is colored orange,</br>
+**high_orange** defines the value above which the cell is colored orange,</br>
 **high_red** defines the value above which the cell is colored red.</br>
 
 The cell is green if the value lies between low_orange and high_orange.
@@ -135,7 +135,7 @@ The status page is a static html file that is rendered according to the styles d
 
 ## Finally
 
-These scripts are deliberately very simple and unsophisticated so that you can easily extend them to do other things. For example, if you want to add a parameter to check for something new, you add the relevant code to the radialsite collect.pl script that causes the new parameter to appear in the Site_XXX.log file and you add the parameter to the Config_parameters.txt and Config_limits_XXXX.txt files on the combinesite and you're done. If you want to change the way that the log files are transferred from the radialsite tothe combinesite, you add or delete the commands from the cron.sh script.
+These scripts are deliberately very simple and unsophisticated so that you can easily extend them to do other things. For example, if you want to add a parameter to check for something new, you add the relevant code to the radialsite collect.pl script that causes the new parameter to appear in the Site_XXXX.log file and you add the parameter to the Config_parameters.txt and Config_limits_XXXX.txt files on the combinesite and you're done. If you want to change the way that the log files are transferred from the radialsite tothe combinesite, you add or delete the commands from the cron.sh script.
 
 If there's anything you want me to add, just let me know.
 
