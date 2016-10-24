@@ -31,18 +31,16 @@ The combinesite code consists of a perl script that is called periodically by cr
 
 At the radial site there is only one script called collect.pl, installed wherever you like, but my convention is to use ~codar/scripts/collect because the /Codar/SeaSonde/Users/Scripts location has previously gotten squashed by Radial Suite updates.
 
-The script collect.pl must be made executable if it isn't already, using:
-`chmod +x collect.pl`
+The script collect.pl must be made executable if it isn't already, using `chmod +x collect.pl`
 
-Run the script manually to test it (check for no error messages):
-`./collect.pl`
+Run the script manually to test it (check for no error messages) using `./collect.pl`
 
-and check that it wrote an output file Site_XXXX.log. The script relies on the Header.txt file to provide the site name and it generates a file called Site_XXXX.log in the current directory.
+Check that it wrote an output file Site_XXXX.log. The script relies on the Header.txt file to provide the site name and it generates a file called Site_XXXX.log in the current directory.
 
-You should also check that it correctly reads the disk space available on the backup/archive drive because it assumes that the volume is called CodarArchives. You can either use this name for your archive volume or change the script to use whatever volume name you have. This can be changed on line 63 of the collect.pl script:
+You should also check that it correctly reads the disk space available on the backup/archive drive because it assumes that the volume is called CodarArchives. You can either use this name for your archive volume or change the script to use whatever volume name you have. This can be changed on line 63 of the collect.pl script:</br>
 `my $archive="/Volumes/CodarArchives" ;`
 
-To call the script periodically, either create a cron job or a launchd plist to run collect.pl from the scripts directory every 10 minutes. For cron this looks like:
+To call the script periodically, either create a cron job or a launchd plist to run collect.pl from the scripts directory every 10 minutes. For cron this looks like:</br>
 `*/10	*	*	*	*	cd ~/scripts/collect ; ./collect.pl`
 
 Add a suitable line to whatever file transfer mechanism you're using and your radial site installation is finished.
@@ -54,14 +52,14 @@ At the combine site, the installation is a little more involved but you only nee
 
 By convention the scripts are installed in ~codar/scripts/collect but they can be installed elsewhere.
 
-The scripts are named as follows:
+The scripts are named as follows:</br>
 **cron.sh**		The entry point script that gets called from cron, calls collectc.pl, mktable.pl and mkpng.pl</br>
 **collectc.pl**	Checks for up to date radial files at the combine site.</br>
 **mktable.pl**	Generates the table.html and tableimages.html files for the webserver.</br>
 **mkpng.pl**	Makes each of the 48 hour plots using gnuplot.</br>
 
 
-The script mktable.pl uses a number of parameter files that defined the layout of the table in terms of which radial sites you want to monitor, which parameters you want to monitor and what the parameter limits are:
+The script mktable.pl uses a number of parameter files that defined the layout of the table in terms of which radial sites you want to monitor, which parameters you want to monitor and what the parameter limits are:</br>
 **Config_stations.txt**	Lists the radial sites you wish to monitor.</br>
 **Config_parameters.txt**	Lists the parameters you wish to monitor.</br>
 **Config_limits_BML1.txt**	Lists the parameter limits for a specific radial site.</br>
@@ -72,14 +70,14 @@ The script mktable.pl uses a number of parameter files that defined the layout o
 Normally you will need to adjust the contents of the Config_stations.txt file only.
 
 
-The Config_stations.txt file has the following format:
+The Config_stations.txt file has the following format:</br>
 `name=BML1 show=y rdlipath=Site_1 rdlmpath=Site_1_RDLm url=http://12.235.42.20:8240`</br>
 `name=PREY show=y rdlipath=Site_2 rdlmpath=Site_2_RDLm`</br>
 `name=GCVE show=n`</br>
 `name=BMLR show=y rdlipath=Site_5 rdlmpath=Site_5_RDLm url=http://12.235.42.23:8240`</br>
 `name=PAFS show=y rdlipath=Site_6 rdlmpath=Site_6_RDLm url=http://166.130.35.187:8240`</br>
 
-The parameter **name** is used to locate the Site_XXXX.log file, name the site and locate the Config_limits_XXXX.txt file.
+Here **name** is used to locate the Site_XXXX.log file, name the site and locate the Config_limits_XXXX.txt file.</br>
 **show** is used to enable or disable the display of the site in the table.</br>
 **rdlipath** points to the subdirectory containing the ideal pattern radial files under /Codar/SeaSonde/RadialSites/.</br>
 **rdlmpath** points to the subdirectory containing the measured pattern radial files under /Codar/SeaSonde/RadialSites/.</br>
@@ -98,20 +96,20 @@ The Config_parameters.txt file has the following format:<br>
 `long_name=Xfer_Measured_Radial_Age_Seconds		short_name=	show=n	check=n	graph=n`<br>
 `long_name=Xfer_Measured_Radial_Age_Hours		short_name=XMRA	show=y	check=y	graph=y`<br>
 
-Here **long_name** is used to locate the parameter in the Site_XXXX.log file.
+Here **long_name** is used to locate the parameter in the Site_XXXX.log file.</br>
 **short name** is used to create parameter specific files under data/.</br>
 **show** is a flag to enable or disable the entire row for all radial sites.</br>
 **check** is a flag to enable color coding the entire row for all radial sites, or color the row white.</br>
 **graph** is a flag to enable or disable generating a plot.</br>
 
 
-The Config_limits_XXXX.txt file has the following format:
+The Config_limits_XXXX.txt file has the following format:</br>
 `long_name=Last_RDLm_Age_Hours				low_red=-1	low_orange=-1	high_orange=2	high_red=3`</br>
 `long_name=Last_RDLi_Age_Hours				low_red=-1	low_orange=-1	high_orange=2	high_red=3`</br>
 `long_name=Root_Disk_Available_GB			low_red=10	low_orange=15`</br>
 `long_name=Archive_Disk_Available_GB			low_red=10	low_orange=15`</br>
 
-Here **long_name** is used to locate the parameter in the Site_XXXX.log file.
+Here **long_name** is used to locate the parameter in the Site_XXXX.log file.</br>
 **low_red** defines the value below which the cell is colored red.</br>
 **low_orange** defines the value below which the cell is colored orange.</br>
 **high_orange** defines the value above which the cell is colored orange.</br>
