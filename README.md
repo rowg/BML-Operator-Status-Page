@@ -59,7 +59,7 @@ The scripts are named as follows:</br>
 **mkpng.pl**	Makes each of the 48 hour plots using gnuplot.</br>
 
 
-The script mktable.pl uses a number of parameter files that defined the layout of the table in terms of which radial sites you want to monitor, which parameters you want to monitor and what the parameter limits are:</br>
+The script mktable.pl uses a number of parameter files that define the layout of the table in terms of which radial sites you want to monitor, which parameters you want to monitor and what the parameter limits are:</br>
 **Config_stations.txt**	Lists the radial sites you wish to monitor.</br>
 **Config_parameters.txt**	Lists the parameters you wish to monitor.</br>
 **Config_limits_BML1.txt**	Lists the parameter limits for a specific radial site.</br>
