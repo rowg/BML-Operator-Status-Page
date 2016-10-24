@@ -88,13 +88,11 @@ Normally you will need to adjust the contents of the Config_stations.txt file on
 
 The Config_stations.txt file has the following format:
 
-`
-name=BML1 show=y rdlipath=Site_1 rdlmpath=Site_1_RDLm url=http://12.235.42.20:8240
-name=PREY show=y rdlipath=Site_2 rdlmpath=Site_2_RDLm
-name=GCVE show=n 
-name=BMLR show=y rdlipath=Site_5 rdlmpath=Site_5_RDLm url=http://12.235.42.23:8240
-name=PAFS show=y rdlipath=Site_6 rdlmpath=Site_6_RDLm url=http://166.130.35.187:8240
-`
+`name=BML1 show=y rdlipath=Site_1 rdlmpath=Site_1_RDLm url=http://12.235.42.20:8240`
+`name=PREY show=y rdlipath=Site_2 rdlmpath=Site_2_RDLm`
+`name=GCVE show=n`
+`name=BMLR show=y rdlipath=Site_5 rdlmpath=Site_5_RDLm url=http://12.235.42.23:8240`
+`name=PAFS show=y rdlipath=Site_6 rdlmpath=Site_6_RDLm url=http://166.130.35.187:8240`
 
 The parameter **name** is used to locate the Site_XXXX.log file, name the site and locate the Config_limits_XXXX.txt file.
 
@@ -109,18 +107,16 @@ The parameter **name** is used to locate the Site_XXXX.log file, name the site a
 
 The Config_parameters.txt file has the following format:
 
-`
-long_name=Xfer_Ideal_Radial_Name			short_name=	show=n	check=n	graph=n
-long_name=Xfer_Ideal_Radial_Short_Name			short_name=	show=y	check=n	graph=n
-long_name=Xfer_Ideal_Radial_Updated_Seconds		short_name=	show=n	check=n	graph=n
-long_name=Xfer_Ideal_Radial_Age_Seconds			short_name=	show=n	check=n	graph=n
-long_name=Xfer_Ideal_Radial_Age_Hours			short_name=XIRA	show=y	check=y	graph=y
-long_name=Xfer_Measured_Radial_Name			short_name=	show=n	check=n	graph=n
-long_name=Xfer_Measured_Radial_Short_Name		short_name=	show=y	check=n	graph=n
-long_name=Xfer_Measured_Radial_Updated_Seconds		short_name=	show=n	check=n	graph=n
-long_name=Xfer_Measured_Radial_Age_Seconds		short_name=	show=n	check=n	graph=n
-long_name=Xfer_Measured_Radial_Age_Hours		short_name=XMRA	show=y	check=y	graph=y
-`
+`long_name=Xfer_Ideal_Radial_Name			short_name=	show=n	check=n	graph=n`
+`long_name=Xfer_Ideal_Radial_Short_Name			short_name=	show=y	check=n	graph=n`
+`long_name=Xfer_Ideal_Radial_Updated_Seconds		short_name=	show=n	check=n	graph=n`
+`long_name=Xfer_Ideal_Radial_Age_Seconds			short_name=	show=n	check=n	graph=n`
+`long_name=Xfer_Ideal_Radial_Age_Hours			short_name=XIRA	show=y	check=y	graph=y`
+`long_name=Xfer_Measured_Radial_Name			short_name=	show=n	check=n	graph=n`
+`long_name=Xfer_Measured_Radial_Short_Name		short_name=	show=y	check=n	graph=n`
+`long_name=Xfer_Measured_Radial_Updated_Seconds		short_name=	show=n	check=n	graph=n`
+`long_name=Xfer_Measured_Radial_Age_Seconds		short_name=	show=n	check=n	graph=n`
+`long_name=Xfer_Measured_Radial_Age_Hours		short_name=XMRA	show=y	check=y	graph=y`
 
 Here **long_name** is used to locate the parameter in the Site_XXXX.log file.
 
@@ -135,12 +131,10 @@ Here **long_name** is used to locate the parameter in the Site_XXXX.log file.
 
 The Config_limits_XXXX.txt file has the following format:
 
-`
-long_name=Last_RDLm_Age_Hours				low_red=-1	low_orange=-1	high_orange=2	high_red=3
-long_name=Last_RDLi_Age_Hours				low_red=-1	low_orange=-1	high_orange=2	high_red=3
-long_name=Root_Disk_Available_GB			low_red=10	low_orange=15
-long_name=Archive_Disk_Available_GB			low_red=10	low_orange=15
-`
+`long_name=Last_RDLm_Age_Hours				low_red=-1	low_orange=-1	high_orange=2	high_red=3`
+`long_name=Last_RDLi_Age_Hours				low_red=-1	low_orange=-1	high_orange=2	high_red=3`
+`long_name=Root_Disk_Available_GB			low_red=10	low_orange=15`
+`long_name=Archive_Disk_Available_GB			low_red=10	low_orange=15`
 
 The long name is used to locate the parameter in the Site_XXXX.log file.
 
