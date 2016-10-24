@@ -76,6 +76,7 @@ The Config_stations.txt file has the following format:</br>
 `name=GCVE show=n`</br>
 `name=BMLR show=y rdlipath=Site_5 rdlmpath=Site_5_RDLm url=http://12.235.42.23:8240`</br>
 `name=PAFS show=y rdlipath=Site_6 rdlmpath=Site_6_RDLm url=http://166.130.35.187:8240`</br>
+`...`</br>
 
 Here **name** is used to locate the Site_XXXX.log file, name the site and locate the Config_limits_XXXX.txt file,</br>
 **show** is used to enable or disable the display of the site in the table,</br>
@@ -95,6 +96,7 @@ The Config_parameters.txt file has the following format:<br>
 `long_name=Xfer_Measured_Radial_Updated_Seconds		short_name=	show=n	check=n	graph=n`<br>
 `long_name=Xfer_Measured_Radial_Age_Seconds		short_name=	show=n	check=n	graph=n`<br>
 `long_name=Xfer_Measured_Radial_Age_Hours		short_name=XMRA	show=y	check=y	graph=y`<br>
+`...`</br>
 
 Here **long_name** is used to locate the parameter in the Site_XXXX.log file,</br>
 **short name** is used to create parameter specific files under data/,</br>
@@ -108,6 +110,7 @@ The Config_limits_XXXX.txt file has the following format:</br>
 `long_name=Last_RDLi_Age_Hours				low_red=-1	low_orange=-1	high_orange=2	high_red=3`</br>
 `long_name=Root_Disk_Available_GB			low_red=10	low_orange=15`</br>
 `long_name=Archive_Disk_Available_GB			low_red=10	low_orange=15`</br>
+`...`</br>
 
 Here **long_name** is used to locate the parameter in the Site_XXXX.log file,</br>
 **low_red** defines the value below which the cell is colored red,</br>
