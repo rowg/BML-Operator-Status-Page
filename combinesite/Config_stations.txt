@@ -1,0 +1,26 @@
+name=BML1 show=y rdlipath=Site_1 rdlmpath=Site_1_RDLm url=http://12.235.42.20:8240
+name=PREY show=y rdlipath=Site_2 rdlmpath=Site_2_RDLm
+name=GCVE show=n 
+name=BMLR show=y rdlipath=Site_5 rdlmpath=Site_5_RDLm url=http://12.235.42.23:8240
+name=PAFS show=y rdlipath=Site_6 rdlmpath=Site_6_RDLm url=http://166.130.35.187:8240
+name=BRAG show=y rdlipath=BRAG rdlmpath=BRAG_RDLm url=http://166.140.211.242:8240
+name=SHEL show=y rdlipath=SHEL rdlmpath=SHEL_RDLm url=http://64.194.69.158:8240
+name=TRIN show=y rdlipath=TRIN rdlmpath=TRIN_RDLm url=http://166.148.101.46:8240
+name=PBON show=y rdlipath= rdlmpath=
+name=LEND show=n rdlipath= rdlmpath=
+name=SAUS show=y rdlipath= rdlmpath= url=http://69.12.250.73:8240
+name=CRIS show=y rdlipath= rdlmpath= url=http://184.23.8.35:8240
+name=RTC1 show=y rdlipath= rdlmpath= url=http://130.212.90.72:8240
+name=SLID show=y rdlipath= rdlmpath=
+name=COMM show=y rdlipath= rdlmpath= url=http://99.17.203.12:8240
+name=ANGL show=y rdlipath= rdlmpath=
+name=EXPL show=y rdlipath= rdlmpath=
+name=MONT show=y rdlipath= rdlmpath= url=http://207.213.216.18:8240
+name=PILR show=y rdlipath= rdlmpath= url=http://76.191.159.56:8240
+name=PESC show=y rdlipath= rdlmpath=
+name=BIGC show=y rdlipath= rdlmpath=
+name=SCRZ show=y rdlipath= rdlmpath= url=http://128.114.44.76:8240
+name=MLML show=y rdlipath= rdlmpath= url=http://205.155.75.36:8240
+name=GCYN show=y rdlipath= rdlmpath=
+name=PSLR show=y rdlipath= rdlmpath=
+name=PPNS show=y rdlipath= rdlmpath=
