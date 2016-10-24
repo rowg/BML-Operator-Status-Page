@@ -93,6 +93,7 @@ Normally you will need to adjust the contents of the Config_stations.txt file on
 
 
 The Config_stations.txt file has the following format:
+
 `
 name=BML1 show=y rdlipath=Site_1 rdlmpath=Site_1_RDLm url=http://12.235.42.20:8240
 name=PREY show=y rdlipath=Site_2 rdlmpath=Site_2_RDLm
@@ -109,6 +110,7 @@ The parameter 'name' is used to locate the Site_XXXX.log file, name the site and
 
 
 The Config_parameters.txt file has the following format:
+
 `
 long_name=Xfer_Ideal_Radial_Name			short_name=	show=n	check=n	graph=n
 long_name=Xfer_Ideal_Radial_Short_Name			short_name=	show=y	check=n	graph=n
