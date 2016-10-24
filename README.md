@@ -9,7 +9,7 @@ An example status page is at http://boon.ucdavis.edu/hfr_status.html and a snaps
 
 ### Prerequisites
 
-The radialsite code requires perl as provided by OSX with only the standard modules. The combinesite scripts also needs perl but no extra modules. The combinesite script mkpng.pl uses gnuplot to create the 2 day plots and if you want the combinesite to serve the status page directly, you will need to enable the OSX webserver. Alternatively you can push the status page to an external webserver.
+The radialsite code requires perl as provided by OSX with only the standard modules. The combinesite scripts also need perl but no extra modules. The combinesite script mkpng.pl uses gnuplot to create the 2 day plots and if you want the combinesite to serve the status page directly, you will need to enable the OSX webserver. Alternatively you can push the status page to an external webserver.
 
 
 
@@ -19,17 +19,17 @@ The implementation is in two parts: radialsite and combinesite, where the radial
 
 ### Radial Site
 
-The radialsite code consists of one perl script that is periodically run from cron or launchd. It creates a text file containing all the site status information and the file is then pulled by the combinesite or pushed by the radialsite, depending on your preference for file transfers.
+The radialsite code consists of one perl script that is periodically run from cron or launchd. It creates a text file containing all the site status information and the file is then transferred to the combinesite.
 
 ### Combine Site
 
-The combinesite code consists of a perl script that is called periodically by cron or launchd. It first transfers all site log files except those that must be pushed, then it examines each site log file in turn, compares the parameters with predetermined limit values and generates the status table. The current values are stored and the 48 hour plots are generated using gnuplot. The finished table is then copied to the webserver document root.
+The combinesite code consists of a perl script that is called periodically by cron or launchd. It first transfers all site log files from the radial sites, then it examines each site log file in turn, compares the parameters with predetermined limit values and generates the status table. The newest values are stored and the 48 hour plots are generated using gnuplot. The finished table is then copied to the webserver.
 
 ## Installation
 
 ### Radial Site
 
-At the radial site there is only one script called collect.pl, installed wherever you like, but my convention is to use ~codar/scripts/collect because the /Codar/SeaSonde/Users/Scripts location has previously gotten squashed by Radial Suite updates.
+At the radial site there is only one script called collect.pl, installed wherever you like, but my convention is to use ~codar/scripts/collect because the /Codar/SeaSonde/Users/Scripts location has previously been squashed by updates to the Radial Suite.
 
 The script collect.pl must be made executable if it isn't already, using `chmod +x collect.pl`
 
@@ -37,18 +37,18 @@ Run the script manually to test it (check for no error messages) using `./collec
 
 Check that it wrote an output file Site_XXXX.log. The script relies on the Header.txt file to provide the site name and it generates a file called Site_XXXX.log in the current directory.
 
-You should also check that it correctly reads the disk space available on the backup/archive drive because it assumes that the volume is called CodarArchives. You can either use this name for your archive volume or change the script to use whatever volume name you have. This can be changed on line 63 of the collect.pl script:</br>
+You should also check that it correctly reads the disk space available on the backup/archive drive because it assumes that the volume is called CodarArchives. You can either use this name for your archive volume or change the script to use the volume name you use. This can be changed on line 63 of the collect.pl script:</br>
 `my $archive="/Volumes/CodarArchives" ;`
 
 To call the script periodically, either create a cron job or a launchd plist to run collect.pl from the scripts directory every 10 minutes. For cron this looks like:</br>
 `*/10	*	*	*	*	cd ~/scripts/collect ; ./collect.pl`
 
-Add a suitable line to whatever file transfer mechanism you're using and your radial site installation is finished.
+Normally the log file should be pulled from the radialsite by the combinesite but if the station does not accept incoming network connections, the log file must be pushed from the radialsite to the combinesite.
 
 
 ### Combine Site
 
-At the combine site, the installation is a little more involved but you only need to do this once for all your radial sites. If you do not operate a combine site, this code can be run on any computer that is available, or you can request to have your radial sites displayed on an exsting status page such as the one at BML.
+At the combine site, the installation is a little more involved but you only need to do this once for all your radial sites. If you do not operate a combine site, this code can be run on any available computer, or you can request to have your radial sites displayed on an existing status page such as the one at BML.
 
 By convention the scripts are installed in ~codar/scripts/collect but they can be installed elsewhere.
 
@@ -58,8 +58,7 @@ The scripts are named as follows:</br>
 **mktable.pl**	generates the table.html and tableimages.html files for the webserver.</br>
 **mkpng.pl**	makes each of the 48 hour plots using gnuplot.</br>
 
-
-The script mktable.pl uses a number of parameter files that define the layout of the table in terms of which radial sites you want to monitor, which parameters you want to monitor and what the parameter limits are:</br>
+The script mktable.pl uses a number of configuration files that define the layout of the table in terms of which radial sites you want to monitor, which parameters you want to monitor and what the parameter limits are:</br>
 **Config_stations.txt**	lists the radial sites you wish to monitor,</br>
 **Config_parameters.txt**	lists the parameters you wish to monitor,</br>
 **Config_limits_XXXX.txt**	lists the parameter limits for a specific radial site,</br>
@@ -67,8 +66,7 @@ The script mktable.pl uses a number of parameter files that define the layout of
 **table.html**		the output file containing the status table,</br>
 **tableimages.html**	an alternative output file containing a table of thumbnail images.</br>
 
-Normally you will need to adjust the contents of the Config_stations.txt file only.
-
+Normally you will need to adjust only the contents of the Config_stations.txt file.
 
 The Config_stations.txt file has the following format:</br>
 `name=BML1 show=y rdlipath=Site_1 rdlmpath=Site_1_RDLm url=http://12.235.42.20:8240`</br>
@@ -83,7 +81,6 @@ Here **name** is used to locate the Site_XXXX.log file, name the site and locate
 **rdlipath** points to the subdirectory containing the ideal pattern radial files under /Codar/SeaSonde/RadialSites/,</br>
 **rdlmpath** points to the subdirectory containing the measured pattern radial files under /Codar/SeaSonde/RadialSites/,</br>
 **url** is the link at the radial site column header and normally points to the Radial WebServer URL and port.</br>
-
 
 The Config_parameters.txt file has the following format:<br>
 `long_name=Xfer_Ideal_Radial_Name			short_name=	show=n	check=n	graph=n`<br>
@@ -136,8 +133,6 @@ If you do not have gnuplot, don't want the hassle of installing it or just don't
 
 The status page is a static html file that is rendered according to the styles defined in 'style.css', located in the same directory as the table.html files.
 
-
-
 ## Finally
 
 These scripts are deliberately very simple and unsophisticated so that you can easily extend them to do other things. For example, if you want to add a parameter to check for something new, you add the relevant code to the radialsite collect.pl script that causes the new parameter to appear in the Site_XXXX.log file and you add the parameter to the Config_parameters.txt and Config_limits_XXXX.txt files on the combinesite and you're done. If you want to change the way that the log files are transferred from the radialsite to the combinesite, you add or delete the commands from the cron.sh script.
@@ -146,6 +141,3 @@ If there's anything you want me to add, just let me know.
 
 Marcel
 mlosekoot@ucdavis.edu or boondata@ucdavis.edu
-
-
-
