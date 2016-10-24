@@ -140,7 +140,7 @@ The status page is a static html file that is rendered according to the styles d
 
 ## Finally
 
-These scripts are deliberately very simple and unsophisticated so that you can easily extend them to do other things. For example, if you want to add a parameter to check for something new, you add the relevant code to the radialsite collect.pl script that causes the new parameter to appear in the Site_XXXX.log file and you add the parameter to the Config_parameters.txt and Config_limits_XXXX.txt files on the combinesite and you're done. If you want to change the way that the log files are transferred from the radialsite tothe combinesite, you add or delete the commands from the cron.sh script.
+These scripts are deliberately very simple and unsophisticated so that you can easily extend them to do other things. For example, if you want to add a parameter to check for something new, you add the relevant code to the radialsite collect.pl script that causes the new parameter to appear in the Site_XXXX.log file and you add the parameter to the Config_parameters.txt and Config_limits_XXXX.txt files on the combinesite and you're done. If you want to change the way that the log files are transferred from the radialsite to the combinesite, you add or delete the commands from the cron.sh script.
 
 If there's anything you want me to add, just let me know.
 
