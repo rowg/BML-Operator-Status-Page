@@ -53,19 +53,19 @@ At the combine site, the installation is a little more involved but you only nee
 By convention the scripts are installed in ~codar/scripts/collect but they can be installed elsewhere.
 
 The scripts are named as follows:</br>
-**cron.sh**		The entry point script that gets called from cron, calls collectc.pl, mktable.pl and mkpng.pl</br>
-**collectc.pl**	Checks for up to date radial files at the combine site.</br>
-**mktable.pl**	Generates the table.html and tableimages.html files for the webserver.</br>
-**mkpng.pl**	Makes each of the 48 hour plots using gnuplot.</br>
+**cron.sh**		the entry point script that gets called from cron, calls collectc.pl, mktable.pl and mkpng.pl</br>
+**collectc.pl**	checks for up to date radial files at the combine site.</br>
+**mktable.pl**	generates the table.html and tableimages.html files for the webserver.</br>
+**mkpng.pl**	makes each of the 48 hour plots using gnuplot.</br>
 
 
 The script mktable.pl uses a number of parameter files that define the layout of the table in terms of which radial sites you want to monitor, which parameters you want to monitor and what the parameter limits are:</br>
-**Config_stations.txt**	Lists the radial sites you wish to monitor.</br>
-**Config_parameters.txt**	Lists the parameters you wish to monitor.</br>
-**Config_limits_BML1.txt**	Lists the parameter limits for a specific radial site.</br>
-**Site_BML1.log**		The status log file from a specific radial site.</br>
-**table.html**		The output file containing the status table.</br>
-**tableimages.html**	An alternative output file containing a table of thumbnail images.</br>
+**Config_stations.txt**	lists the radial sites you wish to monitor.</br>
+**Config_parameters.txt**	lists the parameters you wish to monitor.</br>
+**Config_limits_XXXX.txt**	lists the parameter limits for a specific radial site.</br>
+**Site_XXXX.log**		the status log file from a specific radial site.</br>
+**table.html**		the output file containing the status table.</br>
+**tableimages.html**	an alternative output file containing a table of thumbnail images.</br>
 
 Normally you will need to adjust the contents of the Config_stations.txt file only.
 
