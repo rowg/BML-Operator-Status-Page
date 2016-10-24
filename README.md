@@ -31,28 +31,16 @@ The combinesite code consists of a perl script that is called periodically by cr
 
 At the radial site there is only one script called collect.pl, installed wherever you like, but my convention is to use ~codar/scripts/collect because the /Codar/SeaSonde/Users/Scripts location has previously gotten squashed by Radial Suite updates.
 
-The script collect.pl must be made executable if it isn't already, using:
+The script collect.pl must be made executable if it isn't already, using `chmod +x collect.pl`
 
-`
-chmod +x collect.pl
-`
+Run the script manually to test it (check for no error messages) using `./collect.pl`
 
-Run the script manually to test it (check for no error messages):
+Check that it wrote an output file Site_XXXX.log. The script relies on the Header.txt file to provide the site name and it generates a file called Site_XXXX.log in the current directory.
 
-`
-./collect.pl
-`
+You should also check that it correctly reads the disk space available on the backup/archive drive because it assumes that the volume is called CodarArchives. You can either use this name for your archive volume or change the script to use whatever volume name you have. This can be changed on line 63 of the collect.pl script:</br>
+`my $archive="/Volumes/CodarArchives" ;`
 
-and check that it wrote an output file Site_XXXX.log. The script relies on the Header.txt file to provide the site name and it generates a file called Site_XXXX.log in the current directory.
-
-You should also check that it correctly reads the disk space available on the backup/archive drive because it assumes that the volume is called CodarArchives. You can either use this name for your archive volume or change the script to use whatever volume name you have. This can be changed on line 63 of the collect.pl script:
-
-`
-my $archive="/Volumes/CodarArchives" ;
-`
-
-To call the script periodically, either create a cron job or a launchd plist to run collect.pl from the scripts directory every 10 minutes. For cron this looks like:
-
+To call the script periodically, either create a cron job or a launchd plist to run collect.pl from the scripts directory every 10 minutes. For cron this looks like:</br>
 `*/10	*	*	*	*	cd ~/scripts/collect ; ./collect.pl`
 
 Add a suitable line to whatever file transfer mechanism you're using and your radial site installation is finished.
@@ -64,85 +52,69 @@ At the combine site, the installation is a little more involved but you only nee
 
 By convention the scripts are installed in ~codar/scripts/collect but they can be installed elsewhere.
 
-The scripts are named as follows:
-
-cron.sh		The entry point script that gets called from cron, calls collectc.pl, mktable.pl and mkpng.pl
-
-collectc.pl	Checks for up to date radial files at the combine site.
-
-mktable.pl	Generates the table.html and tableimages.html files for the webserver.
-
-mkpng.pl	Makes each of the 48 hour plots using gnuplot.
+The scripts are named as follows:</br>
+**cron.sh**		the entry point script that gets called from cron, calls collectc.pl, mktable.pl and mkpng.pl</br>
+**collectc.pl**	checks for up to date radial files at the combine site.</br>
+**mktable.pl**	generates the table.html and tableimages.html files for the webserver.</br>
+**mkpng.pl**	makes each of the 48 hour plots using gnuplot.</br>
 
 
-The script mktable.pl uses a number of parameter files that defined the layout of the table in terms of which radial sites you want to monitor, which parameters you want to monitor and what the parameter limits are.
-
-Config_stations.txt	Lists the radial sites you wish to monitor.
-
-Config_parameters.txt	Lists the parameters you wish to monitor.
-
-Config_limits_BML1.txt	Lists the parameter limits for a specific radial site.
-
-Site_BML1.log		The status log file from a specific radial site.
-
-table.html		The output file containing the status table.
-
-tableimages.html	An alternative output file containing a table of thumbnail images.
+The script mktable.pl uses a number of parameter files that define the layout of the table in terms of which radial sites you want to monitor, which parameters you want to monitor and what the parameter limits are:</br>
+**Config_stations.txt**	lists the radial sites you wish to monitor,</br>
+**Config_parameters.txt**	lists the parameters you wish to monitor,</br>
+**Config_limits_XXXX.txt**	lists the parameter limits for a specific radial site,</br>
+**Site_XXXX.log**		the status log file from a specific radial site,</br>
+**table.html**		the output file containing the status table,</br>
+**tableimages.html**	an alternative output file containing a table of thumbnail images.</br>
 
 Normally you will need to adjust the contents of the Config_stations.txt file only.
 
 
-The Config_stations.txt file has the following format:
-`
-name=BML1 show=y rdlipath=Site_1 rdlmpath=Site_1_RDLm url=http://12.235.42.20:8240
-name=PREY show=y rdlipath=Site_2 rdlmpath=Site_2_RDLm
-name=GCVE show=n 
-name=BMLR show=y rdlipath=Site_5 rdlmpath=Site_5_RDLm url=http://12.235.42.23:8240
-name=PAFS show=y rdlipath=Site_6 rdlmpath=Site_6_RDLm url=http://166.130.35.187:8240
-`
+The Config_stations.txt file has the following format:</br>
+`name=BML1 show=y rdlipath=Site_1 rdlmpath=Site_1_RDLm url=http://12.235.42.20:8240`</br>
+`name=PREY show=y rdlipath=Site_2 rdlmpath=Site_2_RDLm`</br>
+`name=GCVE show=n`</br>
+`name=BMLR show=y rdlipath=Site_5 rdlmpath=Site_5_RDLm url=http://12.235.42.23:8240`</br>
+`name=PAFS show=y rdlipath=Site_6 rdlmpath=Site_6_RDLm url=http://166.130.35.187:8240`</br>
 
-The parameter 'name' is used to locate the Site_XXXX.log file, name the site and locate the Config_limits_XXXX.txt file.
-'show' is used to enable or disable the display of the site in the table.
-'rdlipath' points to the subdirectory containing the ideal pattern radial files under /Codar/SeaSonde/RadialSites/.
-'rdlmpath' points to the subdirectory containing the measured pattern radial files under /Codar/SeaSonde/RadialSites/.
-'url' is the link at the radial site column header and normally points to the Radial WebServer URL and port.
+Here **name** is used to locate the Site_XXXX.log file, name the site and locate the Config_limits_XXXX.txt file,</br>
+**show** is used to enable or disable the display of the site in the table,</br>
+**rdlipath** points to the subdirectory containing the ideal pattern radial files under /Codar/SeaSonde/RadialSites/,</br>
+**rdlmpath** points to the subdirectory containing the measured pattern radial files under /Codar/SeaSonde/RadialSites/,</br>
+**url** is the link at the radial site column header and normally points to the Radial WebServer URL and port.</br>
 
 
-The Config_parameters.txt file has the following format:
-`
-long_name=Xfer_Ideal_Radial_Name			short_name=	show=n	check=n	graph=n
-long_name=Xfer_Ideal_Radial_Short_Name			short_name=	show=y	check=n	graph=n
-long_name=Xfer_Ideal_Radial_Updated_Seconds		short_name=	show=n	check=n	graph=n
-long_name=Xfer_Ideal_Radial_Age_Seconds			short_name=	show=n	check=n	graph=n
-long_name=Xfer_Ideal_Radial_Age_Hours			short_name=XIRA	show=y	check=y	graph=y
-long_name=Xfer_Measured_Radial_Name			short_name=	show=n	check=n	graph=n
-long_name=Xfer_Measured_Radial_Short_Name		short_name=	show=y	check=n	graph=n
-long_name=Xfer_Measured_Radial_Updated_Seconds		short_name=	show=n	check=n	graph=n
-long_name=Xfer_Measured_Radial_Age_Seconds		short_name=	show=n	check=n	graph=n
-long_name=Xfer_Measured_Radial_Age_Hours		short_name=XMRA	show=y	check=y	graph=y
-`
+The Config_parameters.txt file has the following format:<br>
+`long_name=Xfer_Ideal_Radial_Name			short_name=	show=n	check=n	graph=n`<br>
+`long_name=Xfer_Ideal_Radial_Short_Name			short_name=	show=y	check=n	graph=n`<br>
+`long_name=Xfer_Ideal_Radial_Updated_Seconds		short_name=	show=n	check=n	graph=n`<br>
+`long_name=Xfer_Ideal_Radial_Age_Seconds			short_name=	show=n	check=n	graph=n`<br>
+`long_name=Xfer_Ideal_Radial_Age_Hours			short_name=XIRA	show=y	check=y	graph=y`<br>
+`long_name=Xfer_Measured_Radial_Name			short_name=	show=n	check=n	graph=n`<br>
+`long_name=Xfer_Measured_Radial_Short_Name		short_name=	show=y	check=n	graph=n`<br>
+`long_name=Xfer_Measured_Radial_Updated_Seconds		short_name=	show=n	check=n	graph=n`<br>
+`long_name=Xfer_Measured_Radial_Age_Seconds		short_name=	show=n	check=n	graph=n`<br>
+`long_name=Xfer_Measured_Radial_Age_Hours		short_name=XMRA	show=y	check=y	graph=y`<br>
 
-The long name is used to locate the parameter in the Site_XXXX.log file.
-The short name is used to create parameter specific files under data/.
-'show' is a flag to enable or disable the entire row for all radial sites.
-'check' is a flag to enable color coding the entire row for all radial sites, or color the row white.
-'graph' is a flag to enable or disable generating a plot.
+Here **long_name** is used to locate the parameter in the Site_XXXX.log file,</br>
+**short name** is used to create parameter specific files under data/,</br>
+**show** is a flag to enable or disable the entire row for all radial sites,</br>
+**check** is a flag to enable color coding the entire row for all radial sites, or color the row white,</br>
+**graph** is a flag to enable or disable generating a plot.</br>
 
 
-The Config_limits_XXXX.txt file has the following format:
+The Config_limits_XXXX.txt file has the following format:</br>
+`long_name=Last_RDLm_Age_Hours				low_red=-1	low_orange=-1	high_orange=2	high_red=3`</br>
+`long_name=Last_RDLi_Age_Hours				low_red=-1	low_orange=-1	high_orange=2	high_red=3`</br>
+`long_name=Root_Disk_Available_GB			low_red=10	low_orange=15`</br>
+`long_name=Archive_Disk_Available_GB			low_red=10	low_orange=15`</br>
 
-`
-long_name=Last_RDLm_Age_Hours				low_red=-1	low_orange=-1	high_orange=2	high_red=3
-long_name=Last_RDLi_Age_Hours				low_red=-1	low_orange=-1	high_orange=2	high_red=3
-long_name=Root_Disk_Available_GB			low_red=10	low_orange=15
-long_name=Archive_Disk_Available_GB			low_red=10	low_orange=15
-`
+Here **long_name** is used to locate the parameter in the Site_XXXX.log file,</br>
+**low_red** defines the value below which the cell is colored red,</br>
+**low_orange** defines the value below which the cell is colored orange,</br>
+**high_orange** defines the value above which the cell is colored orange,</br>
+**high_red** defines the value above which the cell is colored red.</br>
 
-The long name is used to locate the parameter in the Site_XXXX.log file.
-'low_red' defines the value below which the cell is colored red.
-'low_orange' defines the value below which the cell is colored orange.
-'high_orange' defines the value above which the cell is colored orange.
-'high_red' defines the value above which the cell is colored red.
 The cell is green if the value lies between low_orange and high_orange.
 
 Note that when you change the limits, the color coding will be updated on the next call to mktable.pl but in order to update the limit lines drawn on the plots you need to delete the corresponding gnuplot files data/XXXX.gp, described below.
@@ -163,7 +135,7 @@ The status page is a static html file that is rendered according to the styles d
 
 ## Finally
 
-These scripts are deliberately very simple and unsophisticated so that you can easily extend them to do other things. For example, if you want to add a parameter to check for something new, you add the relevant code to the radialsite collect.pl script that causes the new parameter to appear in the Site_XXX.log file and you add the parameter to the Config_parameters.txt and Config_limits_XXXX.txt files on the combinesite and you're done. If you want to change the way that the log files are transferred from the radialsite tothe combinesite, you add or delete the commands from the cron.sh script.
+These scripts are deliberately very simple and unsophisticated so that you can easily extend them to do other things. For example, if you want to add a parameter to check for something new, you add the relevant code to the radialsite collect.pl script that causes the new parameter to appear in the Site_XXXX.log file and you add the parameter to the Config_parameters.txt and Config_limits_XXXX.txt files on the combinesite and you're done. If you want to change the way that the log files are transferred from the radialsite tothe combinesite, you add or delete the commands from the cron.sh script.
 
 If there's anything you want me to add, just let me know.
 
