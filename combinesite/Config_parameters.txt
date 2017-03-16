@@ -42,6 +42,7 @@ long_name=Loop2_Amplitude				short_name=AMP2	show=y	check=y	graph=y
 long_name=Loop1_Phase_Deg				short_name=PH13	show=y	check=y	graph=y
 long_name=Loop2_Phase_Deg				short_name=PH23	show=y	check=y	graph=y
 long_name=Monopole_SNR_dB				short_name=SSN3	show=y	check=y	graph=y
+long_name=Humidity					short_name=HUMI	show=y	check=y	graph=y
 long_name=Time_Now_Full					short_name=	show=n	check=n	graph=n
 long_name=Time_Now_Seconds				short_name=	show=n	check=n	graph=n
 long_name=IP						short_name=	show=n	check=n	graph=n

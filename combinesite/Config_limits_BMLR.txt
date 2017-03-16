@@ -15,6 +15,7 @@ long_name=Transmitter_Chassis_Temperature_DegC		low_red=10	low_orange=15	high_or
 long_name=Transmitter_Amplifier_Temperature_DegC	low_red=10	low_orange=15	high_orange=40	high_red=45	ymin=0		ymax=50
 long_name=Transmitter_Forward_Power_W			low_red=35	low_orange=40	high_orange=75	high_red=80	ymin=0		ymax=80
 long_name=Transmitter_Reverse_Power_W			low_red=-1	low_orange=-1	high_orange=5	high_red=10	ymin=0		ymax=15
+long_name=Humidity					low_red=-1	low_orange=-1	high_orange=50	high_red=80	ymin=0		ymax=100
 long_name=Xfer_Ideal_Radial_Age_Hours			low_red=-1	low_orange=-1	high_orange=2	high_red=3
 long_name=Xfer_Measured_Radial_Age_Hours		low_red=-1	low_orange=-1	high_orange=2	high_red=3
 long_name=Xfer_Collect_Log_Age_Mins			low_red=-1	low_orange=-1	high_orange=21	high_red=30
