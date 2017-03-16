@@ -43,6 +43,7 @@
 # XXXX:Transmitter_Forward_Power_W=42
 # XXXX:Transmitter_Reverse_Power_W=1
 # XXXX:HDT_Sample_Seconds=1225303800
+# XXXX:Humidity=40
 # XXXX:Sentinel_Log_Filename=Sentinel_BML1_20081104.log
 # XXXX:Sentinel_Log_Failures=12
 #
@@ -394,6 +395,7 @@ if( defined($result) )
 		print LOG "${sitename}:Transmitter_Amplifier_Temperature_DegC=${arresult[$lut{XAHT}]}\n" ;
 		print LOG "${sitename}:Transmitter_Forward_Power_W=${arresult[$lut{XAFW}]}\n" ;
 		print LOG "${sitename}:Transmitter_Reverse_Power_W=${arresult[$lut{XARW}]}\n" ;
+		print LOG "${sitename}:Humidity=${arresult[$lut{HUMI}]}\n" ;
 		my $yr=$arresult[$lut{TYRS}] ;
 		my $mo=$arresult[$lut{TMON}] ;
 		my $dy=$arresult[$lut{TDAY}] ;
